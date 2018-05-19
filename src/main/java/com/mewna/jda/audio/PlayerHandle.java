@@ -142,9 +142,11 @@ public class PlayerHandle extends AudioEventAdapter implements AudioSendHandler 
         final Playlist playlist = ManagedGuild.get(geothermal, guildId).getPlaylist();
         final QueuedTrack currentTrack = playlist.getCurrentTrack();
         if(currentTrack != null) {
-            handle.queueTrackEvent(new TrackEvent(AUDIO_TRACK_STOP, currentTrack.getCtx(), track.getInfo()));
-            // Start next track in the queue, if at all possible
-            ManagedGuild.get(geothermal, guildId).startNextTrack(currentTrack.getCtx());
+            if(endReason == AudioTrackEndReason.FINISHED) {
+                handle.queueTrackEvent(new TrackEvent(AUDIO_TRACK_STOP, currentTrack.getCtx(), track.getInfo()));
+                // Start next track in the queue, if at all possible
+                ManagedGuild.get(geothermal, guildId).startNextTrack(currentTrack.getCtx());
+            }
         }
     }
     

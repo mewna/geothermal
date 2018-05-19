@@ -140,13 +140,15 @@ public final class ManagedGuild {
     public void startNextTrack(final ApiContext context) {
         pool.execute(() -> {
             // TODO: Verify that we're actually connected before starting
+            handle.getAudioPlayer().stopTrack();
             final QueuedTrack next = playlist.getNextTrack();
             if(next != null) {
                 try {
                     final ApiContext ctx = next.getCtx();
                     final Core core = geothermal.getCoreManager().getCore(System.getenv("CLIENT_ID"), 0);
+                    System.out.println("### TRACK FOUND, LOADING");
                     PlayerHandle.AUDIO_PLAYER_MANAGER.loadItem(next.getUrl(), new FunctionalResultHandler(audioTrack -> {
-                        logger.info("AudioManager connected on guild {}: {}", ctx.getGuild(), core.getAudioManager(ctx.getGuild()).isConnected());
+                        logger.debug("AudioManager connected on guild {}: {}", ctx.getGuild(), core.getAudioManager(ctx.getGuild()).isConnected());
                         core.getAudioManager(ctx.getGuild()).setSendingHandler(handle);
                         handle.getAudioPlayer().playTrack(audioTrack);
                     }, null,
