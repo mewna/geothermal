@@ -81,8 +81,8 @@ public class PlayerHandle extends AudioEventAdapter implements AudioSendHandler 
                     modifiersField.setAccessible(true);
                     modifiersField.setInt(him, him.getModifiers() & ~Modifier.FINAL);
                     him.set(sourceManager, tlhim);
-                    logger.info("Updated HIM!");
-                    logger.info("Worked: " + him.get(sourceManager).equals(tlhim));
+                    logger.trace("Updated HIM!");
+                    logger.trace("Worked: " + him.get(sourceManager).equals(tlhim));
                 }
             }
         } catch(final NoSuchFieldException | IllegalAccessException e) {

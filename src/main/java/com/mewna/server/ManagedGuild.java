@@ -165,17 +165,18 @@ public final class ManagedGuild {
         PlayerHandle.AUDIO_PLAYER_MANAGER.loadItem(track, new FunctionalResultHandler(audioTrack -> {
             switch(mode) {
                 case QUEUE:
-                    playlist.queueTrack(new QueuedTrack(track, ctx));
+                    playlist.queueTrack(new QueuedTrack(track, ctx, audioTrack.getInfo()));
                     queue.queueTrackEvent(new TrackEvent(AUDIO_TRACK_QUEUE, ctx, audioTrack.getInfo()));
                     break;
                 case DIRECT_PLAY:
                     try {
                         final String domainName = getDomainName(track);
+                        //noinspection StatementWithEmptyBody
                         if(!domainName.equalsIgnoreCase("youtube.com")) {
                             // TODO: Invalid track
                         } else {
                             // We're good
-                            playlist.setCurrentTrack(new QueuedTrack(track, ctx));
+                            playlist.setCurrentTrack(new QueuedTrack(track, ctx, audioTrack.getInfo()));
                             core.getAudioManager(ctx.getGuild()).setSendingHandler(handle);
                             handle.getAudioPlayer().playTrack(audioTrack);
                         }
@@ -184,14 +185,14 @@ public final class ManagedGuild {
                     }
                     break;
                 case FORCE_PLAY:
-                    playlist.setCurrentTrack(new QueuedTrack(track, ctx));
+                    playlist.setCurrentTrack(new QueuedTrack(track, ctx, audioTrack.getInfo()));
                     core.getAudioManager(ctx.getGuild()).setSendingHandler(handle);
                     handle.getAudioPlayer().playTrack(audioTrack);
                     break;
             }
         }, pl -> {
             final List<AudioTrack> tracks = pl.getTracks();
-            tracks.forEach(audioTrack -> playlist.queueTrack(new QueuedTrack(audioTrack.getInfo().uri, ctx)));
+            tracks.forEach(audioTrack -> playlist.queueTrack(new QueuedTrack(audioTrack.getInfo().uri, ctx, audioTrack.getInfo())));
             
             // So this is kinda retarded, but:
             // Basically, because I REALLY don't wanna change the way that track events
@@ -221,13 +222,13 @@ public final class ManagedGuild {
                 final AudioTrack audioTrack = e.getTracks().get(0);
                 switch(mode) {
                     case QUEUE:
-                        playlist.queueTrack(new QueuedTrack(audioTrack.getInfo().uri, ctx));
+                        playlist.queueTrack(new QueuedTrack(audioTrack.getInfo().uri, ctx, audioTrack.getInfo()));
                         queue.queueTrackEvent(new TrackEvent(AUDIO_TRACK_QUEUE, ctx, audioTrack.getInfo()));
                         break;
                     case DIRECT_PLAY:
                         core.getAudioManager(ctx.getGuild()).setSendingHandler(handle);
                         handle.getAudioPlayer().playTrack(audioTrack);
-                        playlist.setCurrentTrack(new QueuedTrack(audioTrack.getInfo().uri, ctx));
+                        playlist.setCurrentTrack(new QueuedTrack(audioTrack.getInfo().uri, ctx, audioTrack.getInfo()));
                         break;
                 }
             } catch(final Throwable t) {

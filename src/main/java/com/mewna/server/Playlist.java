@@ -2,9 +2,8 @@ package com.mewna.server;
 
 import com.mewna.Geothermal;
 import com.mewna.api.ApiContext;
-import com.mewna.nats.NatsServer;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import lombok.*;
-import org.json.JSONObject;
 
 /**
  * @author amy
@@ -55,5 +54,6 @@ public class Playlist {
     public static final class QueuedTrack {
         private final String url;
         private final ApiContext ctx;
+        private final AudioTrackInfo trackInfo;
     }
 }

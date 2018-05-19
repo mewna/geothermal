@@ -2,9 +2,11 @@ package com.mewna.nats;
 
 import com.mewna.Geothermal;
 import com.mewna.api.ApiContext;
-import com.mewna.jda.GeothermalVSU;
+import com.mewna.event.TrackEvent;
+import com.mewna.event.TrackEvent.Type;
 import com.mewna.server.ManagedGuild;
 import com.mewna.server.ManagedGuild.PlayMode;
+import com.mewna.server.Playlist.QueuedTrack;
 import net.dv8tion.jda.Core;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -37,7 +39,7 @@ public class EventHandler {
                 // TODO: Work out real shard id mappings
                 final Core core = geothermal.getCoreManager().getCore(System.getenv("CLIENT_ID"), 0);
                 //GeothermalVSU.acceptVSU(core, sessionId, vsu);
-    
+                
                 ManagedGuild.get(geothermal, vsu.getString("guild_id")).openConnection(core, sessionId, vsu);
                 
                 break;
@@ -63,6 +65,13 @@ public class EventHandler {
                 final ApiContext ctx = ApiContext.fromContext(d.getJSONObject("ctx"));
                 final String guild = ctx.getGuild();
                 ManagedGuild.get(geothermal, guild).startNextTrack(ctx);
+                break;
+            }
+            case "AUDIO_NOW_PLAYING": {
+                final ApiContext ctx = ApiContext.fromContext(d.getJSONObject("ctx"));
+                final String guild = ctx.getGuild();
+                final QueuedTrack currentTrack = ManagedGuild.get(geothermal, guild).getPlaylist().getCurrentTrack();
+                geothermal.getNats().queueTrackEvent(new TrackEvent(Type.AUDIO_TRACK_NOW_PLAYING, ctx, currentTrack.getTrackInfo()));
                 break;
             }
         }

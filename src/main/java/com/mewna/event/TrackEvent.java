@@ -48,6 +48,10 @@ public class TrackEvent {
          */
         AUDIO_TRACK_INVALID,
         /**
+         * Request to fetch current track
+         */
+        AUDIO_TRACK_NOW_PLAYING,
+        /**
          * Queue ended
          */
         AUDIO_QUEUE_END,
