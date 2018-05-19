@@ -214,7 +214,7 @@
                     <!-- See http://stackoverflow.com/a/6773868 -->
                     <archive>
                         <manifest>
-                            <mainClass>gg.cute.Geothermal</mainClass>
+                            <mainClass>com.mewna.Geothermal</mainClass>
                             <addClasspath>true</addClasspath>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>

@@ -21,11 +21,11 @@ public final class GeothermalVSU {
     }
     
     public static void acceptVSU(final Core core, final String sessionId, final JSONObject content) {
-        logger.info("    VSU: {}", content);
-        logger.info("Session: {}", sessionId);
+        logger.debug("    VSU: {}", content);
+        logger.debug("Session: {}", sessionId);
         final String guildId = content.getString("guild_id");
         String endpoint = content.getString("endpoint");
-        logger.info("Geothermal got endpoint: " + endpoint + " for guild: " + guildId);
+        logger.debug("Geothermal got endpoint: " + endpoint + " for guild: " + guildId);
         endpoint = endpoint.replace(":80", "");
         final String token = content.getString("token");
         final AudioManager audioManager = core.getAudioManager(guildId);
@@ -34,14 +34,14 @@ public final class GeothermalVSU {
             try {
                 final AudioWebSocket socket = new AudioWebSocket(audioManager.getListenerProxy(), endpoint, core, guildId,
                         sessionId, token, audioManager.isAutoReconnect());
-                logger.info("Connected to socket");
+                logger.trace("Connected to socket");
                 final AudioConnection connection = new AudioConnection(socket, audioManager.getQueuedAudioConnectionId(),
                         core.getSendFactory());
-                logger.info("Created audio connection");
+                logger.trace("Created audio connection");
                 audioManager.setAudioConnection(connection);
-                logger.info("Set audio connection");
+                logger.trace("Set audio connection");
                 socket.startConnection();
-                logger.info("Starting connection!");
+                logger.trace("Starting connection!");
             } catch(final Throwable t) {
                 t.printStackTrace();
             }
