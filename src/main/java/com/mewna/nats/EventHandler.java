@@ -1,10 +1,10 @@
-package gg.cute.nats;
+package com.mewna.nats;
 
-import gg.cute.Geothermal;
-import gg.cute.api.ApiContext;
-import gg.cute.jda.GeothermalVSU;
-import gg.cute.server.ManagedGuild;
-import gg.cute.server.ManagedGuild.PlayMode;
+import com.mewna.Geothermal;
+import com.mewna.api.ApiContext;
+import com.mewna.jda.GeothermalVSU;
+import com.mewna.server.ManagedGuild;
+import com.mewna.server.ManagedGuild.PlayMode;
 import net.dv8tion.jda.Core;
 import org.json.JSONObject;
 import org.slf4j.Logger;

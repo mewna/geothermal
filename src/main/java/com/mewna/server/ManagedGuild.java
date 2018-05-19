@@ -1,12 +1,12 @@
-package gg.cute.server;
+package com.mewna.server;
 
-import gg.cute.Geothermal;
-import gg.cute.api.ApiContext;
-import gg.cute.event.TrackEvent;
-import gg.cute.jda.GeothermalVSU;
-import gg.cute.jda.audio.PlayerHandle;
-import gg.cute.nats.NatsServer;
-import gg.cute.server.Playlist.QueuedTrack;
+import com.mewna.Geothermal;
+import com.mewna.api.ApiContext;
+import com.mewna.event.TrackEvent;
+import com.mewna.jda.GeothermalVSU;
+import com.mewna.jda.audio.PlayerHandle;
+import com.mewna.nats.NatsServer;
+import com.mewna.server.Playlist.QueuedTrack;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
@@ -27,9 +27,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static gg.cute.event.TrackEvent.Type.AUDIO_QUEUE_END;
-import static gg.cute.event.TrackEvent.Type.AUDIO_TRACK_INVALID;
-import static gg.cute.event.TrackEvent.Type.AUDIO_TRACK_QUEUE;
+import static com.mewna.event.TrackEvent.Type.AUDIO_QUEUE_END;
+import static com.mewna.event.TrackEvent.Type.AUDIO_TRACK_INVALID;
+import static com.mewna.event.TrackEvent.Type.AUDIO_TRACK_QUEUE;
 
 /**
  * @author amy

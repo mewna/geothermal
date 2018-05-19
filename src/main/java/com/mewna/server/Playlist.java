@@ -1,8 +1,8 @@
-package gg.cute.server;
+package com.mewna.server;
 
-import gg.cute.Geothermal;
-import gg.cute.api.ApiContext;
-import gg.cute.nats.NatsServer;
+import com.mewna.Geothermal;
+import com.mewna.api.ApiContext;
+import com.mewna.nats.NatsServer;
 import lombok.*;
 import org.json.JSONObject;
 

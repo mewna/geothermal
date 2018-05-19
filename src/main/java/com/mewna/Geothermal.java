@@ -1,9 +1,9 @@
-package gg.cute;
+package com.mewna;
 
-import gg.cute.jda.CoreManager;
-import gg.cute.nats.EventHandler;
-import gg.cute.nats.NatsServer;
-import gg.cute.server.RedisPool;
+import com.mewna.jda.CoreManager;
+import com.mewna.nats.EventHandler;
+import com.mewna.nats.NatsServer;
+import com.mewna.server.RedisPool;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

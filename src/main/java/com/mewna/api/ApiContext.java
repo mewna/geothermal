@@ -15,7 +15,7 @@
  * along with Hotspring.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package gg.cute.api;
+package com.mewna.api;
 
 import lombok.Value;
 import org.json.JSONException;

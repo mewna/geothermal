@@ -1,8 +1,8 @@
-package gg.cute.server;
+package com.mewna.server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gg.cute.server.Playlist.QueuedTrack;
+import com.mewna.server.Playlist.QueuedTrack;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

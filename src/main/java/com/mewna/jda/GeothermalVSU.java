@@ -1,4 +1,4 @@
-package gg.cute.jda;
+package com.mewna.jda;
 
 import net.dv8tion.jda.Core;
 import net.dv8tion.jda.audio.AudioConnection;

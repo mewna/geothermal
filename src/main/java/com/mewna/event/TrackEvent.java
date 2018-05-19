@@ -1,7 +1,7 @@
-package gg.cute.event;
+package com.mewna.event;
 
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
-import gg.cute.api.ApiContext;
+import com.mewna.api.ApiContext;
 import lombok.Value;
 
 /**

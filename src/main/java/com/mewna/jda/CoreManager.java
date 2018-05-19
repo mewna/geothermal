@@ -1,6 +1,6 @@
-package gg.cute.jda;
+package com.mewna.jda;
 
-import gg.cute.Geothermal;
+import com.mewna.Geothermal;
 import lombok.Getter;
 import net.dv8tion.jda.Core;
 

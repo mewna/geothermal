@@ -1,9 +1,9 @@
-package gg.cute.nats;
+package com.mewna.nats;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gg.cute.Geothermal;
-import gg.cute.event.TrackEvent;
+import com.mewna.Geothermal;
+import com.mewna.event.TrackEvent;
 import io.nats.client.Nats;
 import io.nats.streaming.StreamingConnection;
 import io.nats.streaming.StreamingConnectionFactory;
@@ -25,7 +25,7 @@ import java.util.concurrent.Executors;
 public class NatsServer {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     // TODO: Client ID needs to use container name; use Rancher metadata service
-    private final StreamingConnectionFactory connectionFactory = new StreamingConnectionFactory("cute-nats", "cute-audio-server");
+    private final StreamingConnectionFactory connectionFactory = new StreamingConnectionFactory("mewna-nats", "mewna-audio-server");
     private final Logger logger = LoggerFactory.getLogger(getClass());
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final Geothermal geothermal;
@@ -55,7 +55,7 @@ public class NatsServer {
                     logger.error("Caught error while processing socket message:");
                     e.printStackTrace();
                 }
-            }, new SubscriptionOptions.Builder().durableName("cute-audio-event-queue-durable").build());
+            }, new SubscriptionOptions.Builder().durableName("mewna-audio-event-queue-durable").build());
         } catch(final IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
